@@ -2,13 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Middleware\SetLocale;
 
 
-Route::get('/', [WelcomeController::class, 'index']);
+Route::middleware(SetLocale::class)->prefix('{locale}')->group(function (){
+   // Route::get('/home', [WelcomeController::class, 'index']);
 
-Route::get('lang/{locale}', function ($locale) {
-    if (in_array($locale, ['en', 'hi', 'ar'])) {
-        session(['locale' => $locale]);
-    }
-    return redirect('/');
-})->name('lang.switch');
+    Route::get('/about', [WelcomeController::class, 'about'])->name('about');
+    
+   
+});
+Route::get('/home', function () {
+    return app()->getLocale();
+});
+
+Route::get('/about', [WelcomeController::class, 'about'])->name('about');

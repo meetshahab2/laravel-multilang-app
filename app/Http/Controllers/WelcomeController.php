@@ -8,7 +8,11 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        dd(app()->getLocale());
         return view('welcome');
+    }
+
+    public function about()
+    {
+        return view('about');
     }
 }

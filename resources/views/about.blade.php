@@ -3,9 +3,9 @@
  
 @endphp
 <!DOCTYPE html>
-<html>
+<html lang="{{ app()->getLocale() }}" @if(app()->getLocale() == 'ar') dir="rtl" @endif>
 <head>
-    <title>Home</title>
+    <title>about</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -16,17 +16,15 @@
           <ul class="navbar-nav">
            
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('about', ['locale' => $locale]) }}">About</a>
+                <a class="nav-link" href="{{ route('about', ['locale' => $locale]) }}">about</a>
 
             </li>
            
           </ul>
         </div>
       </nav>
-    <h1>{{ __('messages.welcome') }}</h1>
+    <h1>{{ __('about.title') }}</h1>
 
-    <a href="{{ url('en') }}">English</a> |
-    <a href="{{ url('hi') }}">हिंदी</a> |
-    <a href="{{ url('ar') }}">عربى</a>
+    <h5>{{ __('about.heading') }}</h5>
 </body>
 </html>
